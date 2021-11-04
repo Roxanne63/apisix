@@ -86,7 +86,7 @@ end
 
 
 function _M.get(id)
-    local key = "/global_rules"
+    local key = "/global_rules/"
     if id then
         key = key .. "/" .. id
     end
