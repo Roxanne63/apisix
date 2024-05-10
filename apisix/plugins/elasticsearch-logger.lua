@@ -92,6 +92,7 @@ local schema = {
                 type = "array"
             }
         },
+        keepalive = {type = "integer", minimum = 1, default = 30},
     },
     encrypt_fields = {"auth.password"},
     oneOf = {
@@ -182,7 +183,7 @@ local function send_to_elasticsearch(conf, entries)
         return false, str_format("elasticsearch server returned status: %d, body: %s",
         resp.status, resp.body or "")
     end
-
+    httpc:set_keepalive(conf.keepalive * 1000)
     return true
 end
 
